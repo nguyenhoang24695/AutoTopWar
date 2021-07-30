@@ -46,10 +46,11 @@ namespace AutoTopWar.Job
                 //FileInfo[] files = new DirectoryInfo("pic").GetFiles();
 
 
-                AndroidAction.WaitForTapByImage(deviceID, "pic/closeadv", 5);
-                AndroidAction.TapByImage(deviceID, "pic/clanBtn");
-                AndroidAction.TapByImage(deviceID, "pic/alliance_tech");
-                while (!AndroidAction.TapByImage(deviceID, "pic/item_tech"))
+                IngameAction.CloseAdv(deviceID);
+                IngameAction.OpenClanPanel(deviceID);
+                IngameAction.OpenAllianceTechTab(deviceID);
+                
+                while (!AndroidAction.ClickImageInstant(deviceID, "pic/item_tech"))
                 {
                     // Click Battle Tab
                     KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.3, 9.3);
@@ -59,7 +60,7 @@ namespace AutoTopWar.Job
                 {
 
                     // Tang Diem Cong nghe
-                    for (int i = 0; i < 10; i++)
+                    for (int i = 0; i < 10;)
                     {
 
                         // Click donate
@@ -69,6 +70,7 @@ namespace AutoTopWar.Job
                         // Check het tien hoac len cap
                         if (AndroidAction.ExistImageInstant(deviceID, "pic/item_tech"))
                         {
+                            i++;
                             continue;
                         }
                         if (AndroidAction.ExistImageInstant(deviceID, "pic/out_gold"))
@@ -85,7 +87,7 @@ namespace AutoTopWar.Job
                             Thread.Sleep(2000);
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 90.3, 14.5);
                             Thread.Sleep(2000);
-                            Console.WriteLine("Het vang");
+                            Console.WriteLine("Het vang");                            
                             continue;
                         }
                         if (AndroidAction.ExistImageInstant(deviceID, "pic/level_up"))
@@ -93,7 +95,7 @@ namespace AutoTopWar.Job
 
                             Console.WriteLine("Len cap");
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.1, 80.9);
-                            Thread.Sleep(2000);
+                            Thread.Sleep(2000);                            
                             continue;
                         }
                         break;
@@ -115,6 +117,7 @@ namespace AutoTopWar.Job
             }
             catch (Exception ex)
             {
+                Log.Error(String.Format("Error in Uptech:{0}", ex.Message));
                 Console.WriteLine(ex.Message);
             }
             finally

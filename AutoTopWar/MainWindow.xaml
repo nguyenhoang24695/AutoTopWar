@@ -37,9 +37,28 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0">
-                        <Button x:Name="Up_Tech_Btn" Click="Up_Tech_Click" Content="Up Tech"/>
+                            <GroupBox>
+                                <GroupBox.Header>
+                                    Technical
+                                </GroupBox.Header>
+                                <StackPanel>
+                                    <Button Margin="2" x:Name="Up_Tech_Btn" Click="Up_Tech_Click" Content="Up Tech"/>                                    
+                                </StackPanel>
+                            </GroupBox>
                     </StackPanel>
                     <StackPanel Grid.Column="1">
+                            <GroupBox>
+                                <GroupBox.Header>
+                                    Rally
+                                </GroupBox.Header>
+                                <StackPanel>
+                                    <DockPanel LastChildFill="True">
+                                        <TextBlock Margin="2">LV Rally</TextBlock>
+                                        <TextBox x:Name="Rally_Level_Textbox" Margin="2"/>
+                                    </DockPanel>                                    
+                                    <Button Margin="2" x:Name="Rally_Btn" Click="Rally_Btn_Click" Content="Rally"/>                                    
+                                </StackPanel>
+                            </GroupBox>
                         
                     </StackPanel>
                 </Grid>
@@ -60,6 +79,7 @@
                         <Button Margin="2" Grid.Column="1" Grid.Row="0" x:Name="Quit_All_Nox" Click="Quit_All_Nox_Click" Content="Quit All Emulator"/>
                         <Button Margin="2" Grid.Column="0" Grid.Row="0" x:Name="Open_Emulator_Btn" Click="Open_Emulator_Btn_Click" Content="Open Emulator"/>
                         <Button Margin="2" Grid.Column="0" Grid.Row="1" x:Name="Load_Emulator_IP_Button" Click="Load_Emulator_IP_Button_Click" Content="Load Emulator IP"/>
+                        <Button Margin="2" Grid.Column="1" Grid.Row="1" x:Name="Refresh_Emulator_Table_Button" Click="Refresh_Emulator_Table_Button_Click" Content="Reload Emulator Table"/>
                     </Grid>
                     <GroupBox>
                         <GroupBox.Header>Emulator List</GroupBox.Header>

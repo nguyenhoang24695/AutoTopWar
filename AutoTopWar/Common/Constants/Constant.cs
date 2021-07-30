@@ -20,6 +20,14 @@ namespace AutoTopWar.Constants
         public static readonly string NOX_VMS_FOLDER = "BignoxVMS";
         public static readonly string CONFIG_FILE_PATH = "config.json";
         public static readonly string IP_CONFIG_FILE_PATH = "ip_config.json";
+        
+        
+        
+        //Job
+        public static readonly string RALLY_JOB = "Rally";
+        public static readonly string UP_TECH_JOB = "Up Tech";
+
+
 
 
 

@@ -18,7 +18,7 @@ namespace AutoTopWar.Entity
 
         public EmulatorEntity()
         {
-            Status = Status.Stop;
+            Status = Status.Disconnected;
         }
     }
 
@@ -26,7 +26,7 @@ namespace AutoTopWar.Entity
 
     public enum Status
     {
-        Running = 1,
-        Stop = 0
+        Connected = 1,
+        Disconnected = 0
     }
 }

@@ -65,13 +65,20 @@ namespace AutoTopWar
 
                         Parallel.For(0, threadNumber, i =>
                         {
-                            int id = emulatorIds.Pop();
-                            int temp = id;
-                            GlobalVariants.EMULATOR_LIST.Where(em => em.Id == temp).First().Status = Status.Running;
-                            SyncEmulatorListToDataGrid();
-                            tJ.UpTech(temp);
-                            GlobalVariants.EMULATOR_LIST.Where(em => em.Id == temp).First().Status = Status.Stop;
-                            SyncEmulatorListToDataGrid();
+                            if (emulatorIds.Count > 0)
+                            {
+                                int id = emulatorIds.Pop();
+                                int temp = id;
+                                var emulator = GlobalVariants.EMULATOR_LIST.Where(em => em.Id == temp).First();
+                                emulator.Status = Status.Connected;
+                                emulator.Job = Constant.UP_TECH_JOB;
+                                SyncEmulatorListToDataGrid();
+                                tJ.UpTech(temp);
+                                emulator.Status = Status.Disconnected;
+                                emulator.Job = string.Empty;
+                                SyncEmulatorListToDataGrid();
+
+                            }
                         });
                         WindowAction.CloseAllNoxProcess();
 
@@ -85,9 +92,9 @@ namespace AutoTopWar
         {
             Thread t = new Thread(() =>
             {
-                var runningEm = GlobalVariants.EMULATOR_LIST.FindAll(em => em.Status == Status.Running);
+                var runningEm = GlobalVariants.EMULATOR_LIST.FindAll(em => em.Status == Status.Connected);
                 WindowAction.CloseAllNoxProcess();
-                runningEm.ForEach(rE => rE.Status = Status.Stop);
+                runningEm.ForEach(rE => rE.Status = Status.Disconnected);
 
                 // Xử lý invoke luồng giao diện
                 Dispatcher.Invoke(() =>
@@ -126,9 +133,10 @@ namespace AutoTopWar
             Log.Info("Window_Loaded event execution started");
             if (generalEntity != null)
             {
-                
+
                 LoadEmulatorInfo();
             }
+            CheckEmulatorRunning();
         }
 
         private void Open_Emulator_Btn_Click(object sender, RoutedEventArgs e)
@@ -140,7 +148,7 @@ namespace AutoTopWar
             if (checedId.Length > 0)
             {
                 new Thread(() => GeneralJob.OpenEmulator(checedId)).Start();
-                checkedEm.ForEach(cE => cE.Status = Status.Running);
+                checkedEm.ForEach(cE => cE.Status = Status.Connected);
                 Emulator_GridData.ItemsSource = null;
                 Emulator_GridData.ItemsSource = GlobalVariants.EMULATOR_LIST;
             }
@@ -151,17 +159,17 @@ namespace AutoTopWar
             if (nonIpChosenEmulator.Count > 0)
             {
                 new Thread(() =>
-                {                    
+                {
                     nonIpChosenEmulator.Select(c => c.Id).ToList().ForEach(id =>
                     {
-                        GlobalVariants.EMULATOR_LIST.Where(em => em.Id == id).First().Status = Status.Running;
+                        GlobalVariants.EMULATOR_LIST.Where(em => em.Id == id).First().Status = Status.Connected;
                         SyncEmulatorListToDataGrid();
                         AndroidAction.GetEmulatorIp(id);
-                        GlobalVariants.EMULATOR_LIST.Where(em => em.Id == id).First().Status = Status.Stop;
+                        GlobalVariants.EMULATOR_LIST.Where(em => em.Id == id).First().Status = Status.Disconnected;
                         SyncEmulatorListToDataGrid();
                     });
                     FileUtil.SaveJsonFile(GlobalVariants.ID_IP_LIST, Constant.IP_CONFIG_FILE_PATH);
-                        SyncEmulatorListToDataGrid();
+                    SyncEmulatorListToDataGrid();
 
                 }).Start();
             }
@@ -215,6 +223,71 @@ namespace AutoTopWar
         private void Main_Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Process.GetCurrentProcess().Kill();
+        }
+
+        private void CheckEmulatorRunning()
+        {
+            new Thread(() =>
+            {
+
+                SyncDataGridToEmulatorList();
+                var listDevice = AndroidAction.getDeviceList();
+                GlobalVariants.EMULATOR_LIST.ForEach(em => em.Status = Status.Disconnected);
+                GlobalVariants.EMULATOR_LIST.Where(em => listDevice.Contains(em.Ip)).ToList().ForEach(em => em.Status = Status.Connected);
+
+                Dispatcher.Invoke(() =>
+                {
+                    SyncEmulatorListToDataGrid();
+
+                });
+
+            }).Start();
+        }
+
+        private void Refresh_Emulator_Table_Button_Click(object sender, RoutedEventArgs e)
+        {
+            CheckEmulatorRunning();
+        }
+
+        private void Rally_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            Log.Info("Start Rally");
+            SyncDataGridToEmulatorList();
+            List<EmulatorEntity> choosenEmulator = GetChooseEmulator();
+            Stack<int> emulatorIds = new Stack<int>(choosenEmulator.Select(ces => ces.Id).ToList());
+            int threadNumber = int.Parse(Thread_Textbox.Text);
+            if (choosenEmulator.Count > 0)
+            {
+                int level = int.Parse(Rally_Level_Textbox.Text);
+                WorldJob wJ = new WorldJob();
+                var t = new Thread(() =>
+                {
+                    while (emulatorIds.Count > 0)
+                    {
+
+                        Parallel.For(0, threadNumber, i =>
+                        {
+                            if (emulatorIds.Count > 0)
+                            {
+                                int id = emulatorIds.Pop();
+                                int temp = id;
+                                var emulator = GlobalVariants.EMULATOR_LIST.Where(em => em.Id == temp).First();
+                                emulator.Status = Status.Connected;
+                                emulator.Job = Constant.RALLY_JOB;
+                                SyncEmulatorListToDataGrid();
+                                wJ.Rally(temp, level);
+                                emulator.Status = Status.Disconnected;
+                                emulator.Job = string.Empty;
+                                SyncEmulatorListToDataGrid();
+
+                            }
+                        });
+                        WindowAction.CloseAllNoxProcess();
+
+                    }
+                });
+                t.Start();
+            }
         }
     }
 }

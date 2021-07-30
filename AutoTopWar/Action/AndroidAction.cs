@@ -69,13 +69,25 @@ namespace AutoTopWar.Action
         public static bool ExistImageInstant(string deviceID, string path)
         {
             Log.Info(String.Format("Check Exist Image Instant: IP:{0}, path: {1}", deviceID, path));
-            var tap = ADBHelper.FindImage(deviceID, path);
+            var tap = ADBHelper.FindImage(deviceID, path, 2000, 2);
             if (tap != null)
             {
                 return true;
             }
             return false;
         }
+
+        public static bool ClickImageInstant(string deviceID, string path)
+        {
+            Log.Info(String.Format("Check Exist Image Instant: IP:{0}, path: {1}", deviceID, path));
+            var tap = ADBHelper.FindImageAndClick(deviceID, path, 2000, 2);
+            if (tap)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public static void StartNox(int index)
         {
             Log.Info(String.Format("Start nox with Nox ID: {0}", index));
@@ -160,6 +172,16 @@ namespace AutoTopWar.Action
             {
                 return (string)null;
             }
+        }
+        public static List<string> getDeviceList()
+        {
+            var listDevice = KAutoHelper.ADBHelper.GetDevices();
+            if (listDevice.Count > 0 && listDevice[0].Contains(Constant.NOX_IP_DEFAULT))
+            {
+                return listDevice;
+
+            }
+            return new List<string>();
         }
     }
 }
