@@ -23,47 +23,69 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <GroupBox Grid.Column="0" Margin="2">
-                <GroupBox.Header>Jobs List</GroupBox.Header>
-                <DockPanel LastChildFill="True">
-                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                        <TextBlock Text="Thread Number: " Margin="2"/>
-                        <TextBox Name="Thread_Textbox" MinWidth="20" Margin="2" Text="1"/>
-                    </StackPanel>    
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0">
-                            <GroupBox>
-                                <GroupBox.Header>
-                                    Technical
-                                </GroupBox.Header>
-                                <StackPanel>
-                                    <Button Margin="2" x:Name="Up_Tech_Btn" Click="Up_Tech_Click" Content="Up Tech"/>                                    
-                                </StackPanel>
-                            </GroupBox>
-                    </StackPanel>
-                    <StackPanel Grid.Column="1">
-                            <GroupBox>
-                                <GroupBox.Header>
-                                    Rally
-                                </GroupBox.Header>
-                                <StackPanel>
-                                    <DockPanel LastChildFill="True">
-                                        <TextBlock Margin="2">LV Rally</TextBlock>
-                                        <TextBox x:Name="Rally_Level_Textbox" Margin="2"/>
-                                    </DockPanel>                                    
-                                    <Button Margin="2" x:Name="Rally_Btn" Click="Rally_Btn_Click" Content="Rally"/>                                    
-                                </StackPanel>
-                            </GroupBox>
-                        
-                    </StackPanel>
-                </Grid>
-                </DockPanel>
-            </GroupBox>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <GroupBox Grid.Row="0" Margin="2">
+                    <GroupBox.Header>Jobs List</GroupBox.Header>
+                    <DockPanel LastChildFill="True">
+                        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                            <TextBlock Text="Thread Number: " Margin="2"/>
+                            <TextBox Name="Thread_Textbox" MinWidth="20" Margin="2" Text="1"/>
+                        </StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <GroupBox>
+                                    <GroupBox.Header>
+                                        Technical
+                                    </GroupBox.Header>
+                                    <StackPanel>
+                                        <Button Margin="2" x:Name="Up_Tech_Btn" Click="Up_Tech_Click" Content="Up Tech"/>
+                                    </StackPanel>
+                                </GroupBox>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <GroupBox>
+                                    <GroupBox.Header>
+                                        Rally
+                                    </GroupBox.Header>
+                                    <StackPanel>
+                                        <DockPanel LastChildFill="True">
+                                            <TextBlock Margin="2">LV Rally</TextBlock>
+                                            <TextBox x:Name="Rally_Level_Textbox" Margin="2"/>
+                                        </DockPanel>
+                                        <Button Margin="2" x:Name="Rally_Btn" Click="Rally_Btn_Click" Content="Rally"/>
+                                    </StackPanel>
+                                </GroupBox>
+
+                            </StackPanel>
+                        </Grid>
+                    </DockPanel>
+                </GroupBox>
+                <GroupBox Grid.Row="1">
+                    <GroupBox.Header>System</GroupBox.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Button x:Name="Log_Button" Click="Log_Button_Click">Log</Button>
+                    </Grid>
+                </GroupBox>
+            </Grid>
             <GroupBox Grid.Column="1">
                 <GroupBox.Header>Emulator</GroupBox.Header>
                 <DockPanel Background="Azure" LastChildFill="True">
@@ -83,7 +105,18 @@
                     </Grid>
                     <GroupBox>
                         <GroupBox.Header>Emulator List</GroupBox.Header>
-                        <DockPanel>
+                        <DockPanel LastChildFill="True">
+                            <Grid DockPanel.Dock="Top">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="0" x:Name="Select_All_Emulator_Button" Margin="2" Click="Select_All_Emulator_Button_Click">Select All</Button>
+                                <Button Grid.Column="1" x:Name="Deselect_All_Emulator_Button" Margin="2" Click="Deselect_All_Emulator_Button_Click">Deselect All</Button>
+                            </Grid>
                             <DataGrid x:Name="Emulator_GridData" Margin="2" MinRowHeight="20" CanUserAddRows="False"/>
                         </DockPanel>
                     </GroupBox>

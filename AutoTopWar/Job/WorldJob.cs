@@ -15,12 +15,13 @@ namespace AutoTopWar.Job
         private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(typeof(WorldJob));
         public void Rally(int emulatorId, int level)
         {
+            bool isComplete = false;
             int tempCount = emulatorId;
-            Log.Info(string.Format("Start Rally for Device ID: {0}", tempCount));
-            try
+            string deviceID = null;
+            Log.Info(string.Format("Start Rally level {1} for Device ID: {0}", tempCount, level));
+        a: try
             {
                 new Thread(() => AndroidAction.StartNox(tempCount)).Start();
-                string deviceID = null;
                 var device = GlobalVariants.EMULATOR_LIST.Where(em => em.Id == tempCount).First();
                 var listDevice = KAutoHelper.ADBHelper.GetDevices();
                 while (true)
@@ -87,9 +88,10 @@ namespace AutoTopWar.Job
                         Thread.Sleep(2000);
                     }
 
-                    if (!AndroidAction.ExistImage(deviceID, "pic/search/battle"))
+                    if (!AndroidAction.ExistImageInstant(deviceID, "pic/search/battle"))
                     {
                         // Coi như hết thể lực
+                        isComplete = true;
                         throw new Exception(string.Format("emulator IP: {0} het the luc", deviceID));
                     }
 
@@ -102,11 +104,13 @@ namespace AutoTopWar.Job
                         // Vấn đề khi start battle
                         throw new Exception(string.Format("emulator IP: {0} start battle loi", deviceID));
                     };
+                    isComplete = true;
                 };
 
             }
             catch (Exception ex)
             {
+                KAutoHelper.ADBHelper.ScreenShoot(deviceID, fileName: string.Format("logs\\screenshot\\{0}.png", DateTime.Now.ToString("yyyyMMddHHmmss")));
                 Log.Error(String.Format("Error in Rally:{0}", ex.Message));
             }
             finally

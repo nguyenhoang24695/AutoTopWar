@@ -91,7 +91,7 @@ namespace AutoTopWar.Action
         public static void StartNox(int index)
         {
             Log.Info(String.Format("Start nox with Nox ID: {0}", index));
-            ExecuteCommand(string.Format(Constant.START_NOX, index));
+            ExecuteCommand(string.Format(Constant.START_NOX, index, GlobalVariants.GENERAL_CONFIG.EmulatorPath));
         }
 
         public static void GetEmulatorIp(int id)
@@ -143,7 +143,7 @@ namespace AutoTopWar.Action
 
         public static void QuitNox(int index)
         {
-            ExecuteCommand(string.Format(Constant.QUIT_NOX, index));
+            ExecuteCommand(string.Format(Constant.QUIT_NOX, index, GlobalVariants.GENERAL_CONFIG.EmulatorPath));
         }
         public static string ExecuteCommand(string cmdCommand)
         {

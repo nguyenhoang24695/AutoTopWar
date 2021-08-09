@@ -6,14 +6,15 @@ namespace AutoTopWar.Constants
 {
     public class Constant
     {
-        public static readonly string NOX_PATH = "D:\\Program Files\\Nox\\bin\\Nox.exe";
-        public static readonly string START_NOX = "\"" + NOX_PATH + "\" -clone:Nox_{0} -resolution:540x960 -package:com.topwar.gp";
-        public static readonly string QUIT_NOX = "\"" + NOX_PATH + "\" -clone:Nox_{0} -quit";
-        public static readonly string VMS_FOLDER_PATH = "D:\\Program Files\\Nox\\bin\\BignoxVMS";
+        //public static readonly string NOX_PATH = "F:\\Nox\\bin\\Nox.exe";
+        public static readonly string START_NOX = "{1} -clone:Nox_{0} -resolution:540x960 -package:com.topwar.gp";
+        public static readonly string QUIT_NOX = "{1} -clone:Nox_{0} -quit";
+        public static readonly string VMS_FOLDER_PATH = "F:\\Nox\\bin\\BignoxVMS";
         public static readonly string NOX_IP_DEFAULT = "127.0.0.1";
 
         public static readonly string QUIT_ALL_NOX_PROCESS_CMD = "TASKKILL /IM nox.exe /F";
         public static readonly string QUIT_ALL_NOX_HANDLE_PROCESS_CMD = "TASKKILL /IM NoxVMHandle.exe /F";
+        public static readonly string OPEN_LOG_FILE_CMD = "start logs\\{0}.log";
 
 
 

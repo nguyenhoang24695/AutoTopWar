@@ -10,6 +10,7 @@ namespace AutoTopWar.Common
     public class GlobalVariants
     {
         public static List<string> existIpPort = new List<string>();
+        public static GeneralEntity GENERAL_CONFIG = new GeneralEntity();
         public static List<EmulatorEntity> EMULATOR_LIST = new List<EmulatorEntity>();
         public static List<IpIdEntity> ID_IP_LIST = new List<IpIdEntity>();
 
