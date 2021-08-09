@@ -48,7 +48,7 @@ namespace AutoTopWar.Job
                 {
                     if (!AndroidAction.ExistImage(deviceID, "pic/world_queue"))
                     {
-                        Thread.Sleep(30000);
+                        Thread.Sleep(10000);
                         continue;
                     }
                     IngameAction.OpenSearch(deviceID);
@@ -79,13 +79,13 @@ namespace AutoTopWar.Job
 
                     //Click vao boss bua chien
 
-                    Thread.Sleep(5000);
+                    Thread.Sleep(4000);
 
                     // An vao bua chien
                     while (!AndroidAction.ClickImageInstant(deviceID, "pic/search/rally/boss_info"))
                     {
                         KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.7, 45.7);
-                        Thread.Sleep(2000);
+                        Thread.Sleep(1000);
                     }
 
                     if (!AndroidAction.ExistImageInstant(deviceID, "pic/search/battle"))
@@ -110,8 +110,18 @@ namespace AutoTopWar.Job
             }
             catch (Exception ex)
             {
-                KAutoHelper.ADBHelper.ScreenShoot(deviceID, fileName: string.Format("logs\\screenshot\\{0}.png", DateTime.Now.ToString("yyyyMMddHHmmss")));
-                Log.Error(String.Format("Error in Rally:{0}", ex.Message));
+                try
+                {
+                    Log.Error(String.Format("Error in Rally:{0}", ex.Message));
+                    Common.Utilities.ImageUtil.SaveImageToFile(KAutoHelper.ADBHelper.ScreenShoot(deviceID), string.Format("logs\\screenshot\\{0}.png", DateTime.Now.ToString("yyyyMMddHHmmss")));
+
+                }
+                catch (Exception ex2)
+                {
+
+                    Log.Error(String.Format("Error in Rally:{0}", ex2.Message));
+                }
+
             }
             finally
             {

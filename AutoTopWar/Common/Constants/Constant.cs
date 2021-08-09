@@ -14,6 +14,9 @@ namespace AutoTopWar.Constants
 
         public static readonly string QUIT_ALL_NOX_PROCESS_CMD = "TASKKILL /IM nox.exe /F";
         public static readonly string QUIT_ALL_NOX_HANDLE_PROCESS_CMD = "TASKKILL /IM NoxVMHandle.exe /F";
+
+        public static readonly string KILL_TASK_PROCESS_BY_PID_CMD = "taskkill /F /PID {0}";
+
         public static readonly string OPEN_LOG_FILE_CMD = "start logs\\{0}.log";
 
 

@@ -50,30 +50,45 @@ namespace AutoTopWar
             if (choosenEmulator.Count > 0)
             {
                 TechnicalJob tJ = new TechnicalJob();
-                var t = new Thread(() =>
+                Thread t = new Thread(() =>
                 {
                     ReadOnlyDataGrid();
                     CheckEmulatorRunning(true);
+                    int count = 0;
 
-                    while (emulatorIds.Count > 0)
+                    while (true)
                     {
-                        Parallel.For(0, threadNumber, i =>
+                        if (emulatorIds.Count > 0)
                         {
-                            if (emulatorIds.Count > 0)
+
+                            if (count < threadNumber)
                             {
-                                int id = emulatorIds.Pop();
-                                int temp = id;
-                                var emulator = GlobalVariants.EMULATOR_LIST.Where(em => em.Id == temp).First();
-                                emulator.Status = Status.Connected;
-                                emulator.Job = Constant.UP_TECH_JOB;
-                                SyncEmulatorListToDataGrid();
-                                tJ.UpTech(temp);
-                                emulator.Status = Status.Disconnected;
-                                emulator.Job = string.Empty;
-                                SyncEmulatorListToDataGrid();
+                                count++;
+                                new Thread(() =>
+                                {
+
+                                    int id = emulatorIds.Pop();
+                                    int temp = id;
+                                    var emulator = GlobalVariants.EMULATOR_LIST.Where(em => em.Id == temp).First();
+                                    emulator.Status = Status.Connected;
+                                    emulator.Job = Constant.UP_TECH_JOB;
+                                    SyncEmulatorListToDataGrid();
+                                    tJ.UpTech(temp);
+                                    // Sau khi chạy xong thì kill emulator task bằng pid
+                                    WindowAction.CloseNoxWithPid(temp);
+                                    emulator.Status = Status.Disconnected;
+                                    emulator.Job = string.Empty;
+                                    SyncEmulatorListToDataGrid();
+                                    count--;
+
+                                }).Start();
                             }
-                        });
-                        WindowAction.CloseAllNoxProcess();
+                        }
+                        if (count == 0)
+                        {
+                            break;
+                        }
+                        Thread.Sleep(1000);
                     }
                     StopCheckEmulatorRunning();
                     EditableDataGrid();
@@ -97,25 +112,39 @@ namespace AutoTopWar
                 {
                     ReadOnlyDataGrid();
                     CheckEmulatorRunning(true);
-                    while (emulatorIds.Count > 0)
+                    int count = 0;
+                    while (true)
                     {
-                        Parallel.For(0, threadNumber, i =>
+                        if (emulatorIds.Count > 0)
                         {
-                            if (emulatorIds.Count > 0)
+
+                            if (count < threadNumber)
                             {
-                                int id = emulatorIds.Pop();
-                                int temp = id;
-                                var emulator = GlobalVariants.EMULATOR_LIST.Where(em => em.Id == temp).First();
-                                emulator.Status = Status.Connected;
-                                emulator.Job = Constant.RALLY_JOB;
-                                SyncEmulatorListToDataGrid();
-                                wJ.Rally(temp, level);
-                                emulator.Status = Status.Disconnected;
-                                emulator.Job = string.Empty;
-                                SyncEmulatorListToDataGrid();
+                                count++;
+                                new Thread(() =>
+                                {
+                                    int id = emulatorIds.Pop();
+                                    int temp = id;
+                                    var emulator = GlobalVariants.EMULATOR_LIST.Where(em => em.Id == temp).First();
+                                    emulator.Status = Status.Connected;
+                                    emulator.Job = Constant.RALLY_JOB;
+                                    SyncEmulatorListToDataGrid();
+                                    wJ.Rally(temp, level);
+                                    // Sau khi chạy xong thì kill emulator task bằng pid
+                                    WindowAction.CloseNoxWithPid(temp);
+                                    emulator.Status = Status.Disconnected;
+                                    emulator.Job = string.Empty;
+                                    SyncEmulatorListToDataGrid();
+                                    count--;
+                                }).Start();
                             }
-                        });
-                        WindowAction.CloseAllNoxProcess();
+
+                        }
+                        if (count == 0)
+                        {
+                            break;
+                        }
+                        Thread.Sleep(1000);
                     }
                     StopCheckEmulatorRunning();
                     EditableDataGrid();
@@ -348,7 +377,13 @@ namespace AutoTopWar
 
         private void Log_Button_Click(object sender, RoutedEventArgs e)
         {
-            Action.AndroidAction.ExecuteCommand(string.Format(Constant.OPEN_LOG_FILE_CMD,DateTime.Now.ToString("dd-MM-yyyy")));
+            Action.AndroidAction.ExecuteCommand(string.Format(Constant.OPEN_LOG_FILE_CMD, DateTime.Now.ToString("dd-MM-yyyy")));
+        }
+
+        private void Test_Button_Click(object sender, RoutedEventArgs e)
+        {
+            var rs = KAutoHelper.NoxMultiIni.GetNoxMultiIni();
+            MessageBox.Show(rs.ToString());
         }
     }
 }

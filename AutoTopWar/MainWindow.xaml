@@ -82,7 +82,8 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Button x:Name="Log_Button" Click="Log_Button_Click">Log</Button>
+                        <Button Margin="2" Grid.Column="0" Grid.Row="0" x:Name="Log_Button" Click="Log_Button_Click">Log</Button>
+                        <Button Margin="2" Grid.Column="0" Grid.Row="1" x:Name="Test_Button" Click="Test_Button_Click">Test Function</Button>
                     </Grid>
                 </GroupBox>
             </Grid>

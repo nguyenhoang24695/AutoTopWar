@@ -202,6 +202,7 @@
     <Compile Include="Common\GlobalVariants.cs" />
     <Compile Include="Common\Utilities\DataUtil.cs" />
     <Compile Include="Common\Utilities\FileUtil.cs" />
+    <Compile Include="Common\Utilities\ImageUtil.cs" />
     <Compile Include="Common\Utilities\ValidationUtil.cs" />
     <Compile Include="Entity\EmulatorEntity.cs" />
     <Compile Include="Entity\GeneralEntity.cs" />
