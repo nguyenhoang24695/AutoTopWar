@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AutoTopWar.Action
@@ -11,6 +12,12 @@ namespace AutoTopWar.Action
         public static void CloseAdv(string deviceID)
         {
             AndroidAction.WaitForTapByImage(deviceID, "pic/closeadv", 5);
+            Thread.Sleep(1000);
+            while (AndroidAction.ExistImageInstant(deviceID, "pic/closeadv"))
+            {
+                AndroidAction.TapByImage(deviceID, "pic/closeadv");
+                Thread.Sleep(1000);
+            }
         }
 
         public static void OpenClanPanel(string deviceID)
@@ -20,7 +27,7 @@ namespace AutoTopWar.Action
 
         public static void OpenAllianceTechTab(string deviceID)
         {
-                AndroidAction.TapByImage(deviceID, "pic/alliance_tech");
+            AndroidAction.TapByImage(deviceID, "pic/alliance_tech");
         }
 
         public static void OpenWorldMap(string deviceID)

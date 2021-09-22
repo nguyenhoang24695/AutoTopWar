@@ -107,6 +107,7 @@ namespace AutoTopWar
             if (choosenEmulator.Count > 0)
             {
                 int level = int.Parse(Rally_Level_Textbox.Text);
+                int type = int.Parse(Rally_Type_Textbox.Text);
                 WorldJob wJ = new WorldJob();
                 var t = new Thread(() =>
                 {
@@ -129,7 +130,7 @@ namespace AutoTopWar
                                     emulator.Status = Status.Connected;
                                     emulator.Job = Constant.RALLY_JOB;
                                     SyncEmulatorListToDataGrid();
-                                    wJ.Rally(temp, level);
+                                    wJ.Rally(temp, level, type);
                                     // Sau khi chạy xong thì kill emulator task bằng pid
                                     WindowAction.CloseNoxWithPid(temp);
                                     emulator.Status = Status.Disconnected;

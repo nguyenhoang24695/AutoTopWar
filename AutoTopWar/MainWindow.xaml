@@ -61,6 +61,10 @@
                                             <TextBlock Margin="2">LV Rally</TextBlock>
                                             <TextBox x:Name="Rally_Level_Textbox" Margin="2"/>
                                         </DockPanel>
+                                        <DockPanel LastChildFill="True">
+                                            <TextBlock Margin="2">Type Of Rally</TextBlock>
+                                            <TextBox x:Name="Rally_Type_Textbox" Margin="2"/>
+                                        </DockPanel>
                                         <Button Margin="2" x:Name="Rally_Btn" Click="Rally_Btn_Click" Content="Rally"/>
                                     </StackPanel>
                                 </GroupBox>

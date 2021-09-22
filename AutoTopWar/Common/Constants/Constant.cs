@@ -7,7 +7,7 @@ namespace AutoTopWar.Constants
     public class Constant
     {
         //public static readonly string NOX_PATH = "F:\\Nox\\bin\\Nox.exe";
-        public static readonly string START_NOX = "{1} -clone:Nox_{0} -resolution:540x960 -package:com.topwar.gp";
+        public static readonly string START_NOX = "{1} -clone:Nox_{0} -resolution:540x960 -cpu:1 -memory:1024 -package:com.topwar.gp";
         public static readonly string QUIT_NOX = "{1} -clone:Nox_{0} -quit";
         public static readonly string VMS_FOLDER_PATH = "F:\\Nox\\bin\\BignoxVMS";
         public static readonly string NOX_IP_DEFAULT = "127.0.0.1";

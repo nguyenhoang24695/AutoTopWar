@@ -49,7 +49,7 @@ namespace AutoTopWar.Job
                 IngameAction.CloseAdv(deviceID);
                 IngameAction.OpenClanPanel(deviceID);
                 IngameAction.OpenAllianceTechTab(deviceID);
-                
+
                 while (!AndroidAction.ClickImageInstant(deviceID, "pic/item_tech"))
                 {
                     // Click Battle Tab
@@ -65,7 +65,7 @@ namespace AutoTopWar.Job
 
                         // Click donate
                         KAutoHelper.ADBHelper.TapByPercent(deviceID, 72.6, 71.4);
-                        Thread.Sleep(3000);
+                        Thread.Sleep(1000);
 
                         // Check het tien hoac len cap
                         if (AndroidAction.ExistImageInstant(deviceID, "pic/item_tech"))
@@ -87,15 +87,15 @@ namespace AutoTopWar.Job
                             Thread.Sleep(2000);
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 90.3, 14.5);
                             Thread.Sleep(2000);
-                            Console.WriteLine("Het vang");                            
+                            Log.Warn(string.Format("ID: {0} : Het Vang", deviceID));
                             continue;
                         }
                         if (AndroidAction.ExistImageInstant(deviceID, "pic/level_up"))
                         {
 
-                            Console.WriteLine("Len cap");
+                            Log.Warn(string.Format("ID: {0} : Len cap", deviceID));
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.1, 80.9);
-                            Thread.Sleep(2000);                            
+                            Thread.Sleep(2000);
                             continue;
                         }
                         break;
@@ -103,14 +103,14 @@ namespace AutoTopWar.Job
 
                 }
                 // Close up tech
-                KAutoHelper.ADBHelper.TapByPercent(deviceID, 90.3, 15.4);
-                Thread.Sleep(2000);
-                //Close allance tech
-                KAutoHelper.ADBHelper.TapByPercent(deviceID, 7.3, 3.2);
-                Thread.Sleep(2000);
-                //Close Alliance
-                KAutoHelper.ADBHelper.TapByPercent(deviceID, 7.3, 3.2);
-                Thread.Sleep(2000);
+                //KAutoHelper.ADBHelper.TapByPercent(deviceID, 90.3, 15.4);
+                //Thread.Sleep(2000);
+                ////Close allance tech
+                //KAutoHelper.ADBHelper.TapByPercent(deviceID, 7.3, 3.2);
+                //Thread.Sleep(2000);
+                ////Close Alliance
+                //KAutoHelper.ADBHelper.TapByPercent(deviceID, 7.3, 3.2);
+                //Thread.Sleep(2000);
 
                 //var isTap = ADBHelper.FindImageAndClick(deviceID, "pic");
 

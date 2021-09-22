@@ -13,7 +13,7 @@ namespace AutoTopWar.Job
     public class WorldJob
     {
         private static readonly log4net.ILog Log = log4net.LogManager.GetLogger(typeof(WorldJob));
-        public void Rally(int emulatorId, int level)
+        public void Rally(int emulatorId, int level, int rallyType)
         {
             bool isComplete = false;
             int tempCount = emulatorId;
@@ -53,6 +53,14 @@ namespace AutoTopWar.Job
                     }
                     IngameAction.OpenSearch(deviceID);
                     IngameAction.OpenRallyTab(deviceID);
+
+                    //BumBum
+                    if (rallyType == 2)
+                    {
+                        AndroidAction.ClickImageInstant(deviceID, "pic/search/rally/bumbum");
+
+                        KAutoHelper.ADBHelper.TapByPercent(deviceID, 48.2, 60.9);
+                    }
                     if (level == 1)
                     {
                         while (!AndroidAction.ExistImageInstant(deviceID, "pic/search/rally/lv10"))
