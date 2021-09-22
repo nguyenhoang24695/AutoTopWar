@@ -70,6 +70,17 @@
                                 </GroupBox>
 
                             </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <GroupBox>
+                                    <GroupBox.Header>
+                                        Specify
+                                    </GroupBox.Header>
+                                    <StackPanel>
+                                        <Button x:Name="Run_Dark_Force" Click="Run_Dark_Force_Click">Run</Button>
+                                    </StackPanel>
+                                </GroupBox>
+
+                            </StackPanel>
                         </Grid>
                     </DockPanel>
                 </GroupBox>

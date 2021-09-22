@@ -386,5 +386,52 @@ namespace AutoTopWar
             var rs = KAutoHelper.NoxMultiIni.GetNoxMultiIni();
             MessageBox.Show(rs.ToString());
         }
+
+        private void Run_Dark_Force_Click(object sender, RoutedEventArgs e)
+        {
+            string deviceID = "LGH8734d476d4b";
+            new Thread(() =>
+            {
+                while (true)
+                {
+                    if (AndroidAction.ExistImageInstant(deviceID, "pic/world_queue"))
+                    {
+                        KAutoHelper.ADBHelper.TapByPercent(deviceID, 12.7, 91.6);
+                        Thread.Sleep(1000);
+                        KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.3, 71.6);
+                        Thread.Sleep(1000);
+                        KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.0, 46.3);
+                        Thread.Sleep(1000);
+                        KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.0, 46.3);
+                        Thread.Sleep(1000);
+                        KAutoHelper.ADBHelper.TapByPercent(deviceID, 29.3, 37.9);
+                        Thread.Sleep(2000);
+                        if (!AndroidAction.ExistImageInstant(deviceID, "pic/search/battle"))
+                        {
+                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 75.7, 52.9);
+                            Thread.Sleep(1000);
+                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.7, 66.7);
+                            Thread.Sleep(1000);
+                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 91.0, 33.3);
+                            Thread.Sleep(1000);
+                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.0, 46.3);
+                            Thread.Sleep(1000);
+                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 29.3, 37.9);
+                            Thread.Sleep(2000);
+                        }
+
+                        KAutoHelper.ADBHelper.TapByPercent(deviceID, 29.3, 37.9);
+                        Thread.Sleep(500);
+                        KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.7, 42.3);
+                    }
+                    else
+                    {
+                        Thread.Sleep(2000);
+                    }
+                }
+            }).Start();
+
+
+        }
     }
 }
