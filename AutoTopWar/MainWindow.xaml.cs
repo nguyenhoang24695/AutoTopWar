@@ -26,6 +26,9 @@ namespace AutoTopWar
 
         private static Thread realtime_Thread;
 
+        private static Thread DFThread;
+        private static bool isRunDF = false;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -389,47 +392,62 @@ namespace AutoTopWar
 
         private void Run_Dark_Force_Click(object sender, RoutedEventArgs e)
         {
-            string deviceID = "LGH8734d476d4b";
-            new Thread(() =>
+            isRunDF = !isRunDF;
+            if (isRunDF)
             {
-                while (true)
+                this.Status_TextBlock.Text = "Running";
+                //string deviceID = "LGH8734d476d4b";
+                string deviceID = KAutoHelper.ADBHelper.GetDevices()[0];
+
+                DFThread = new Thread(() =>
                 {
-                    if (AndroidAction.ExistImageInstant(deviceID, "pic/world_queue"))
+                    while (true)
                     {
-                        KAutoHelper.ADBHelper.TapByPercent(deviceID, 12.7, 91.6);
-                        Thread.Sleep(1000);
-                        KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.3, 71.6);
-                        Thread.Sleep(1000);
-                        KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.0, 46.3);
-                        Thread.Sleep(1000);
-                        KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.0, 46.3);
-                        Thread.Sleep(1000);
-                        KAutoHelper.ADBHelper.TapByPercent(deviceID, 29.3, 37.9);
-                        Thread.Sleep(2000);
-                        if (!AndroidAction.ExistImageInstant(deviceID, "pic/search/battle"))
+                        if (AndroidAction.ExistImageInstant(deviceID, "pic/world_queue"))
                         {
-                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 75.7, 52.9);
+                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 12.7, 91.6);
                             Thread.Sleep(1000);
-                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.7, 66.7);
+                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.3, 71.6);
                             Thread.Sleep(1000);
-                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 91.0, 33.3);
+                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.0, 46.3);
                             Thread.Sleep(1000);
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.0, 46.3);
                             Thread.Sleep(1000);
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 29.3, 37.9);
                             Thread.Sleep(2000);
-                        }
+                            if (!AndroidAction.ExistImageInstant(deviceID, "pic/search/battle"))
+                            {
+                                KAutoHelper.ADBHelper.TapByPercent(deviceID, 75.7, 52.9);
+                                Thread.Sleep(1000);
+                                KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.7, 66.7);
+                                Thread.Sleep(1000);
+                                KAutoHelper.ADBHelper.TapByPercent(deviceID, 91.0, 33.3);
+                                Thread.Sleep(1000);
+                                KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.0, 46.3);
+                                Thread.Sleep(1000);
+                                KAutoHelper.ADBHelper.TapByPercent(deviceID, 29.3, 37.9);
+                                Thread.Sleep(2000);
+                            }
 
-                        KAutoHelper.ADBHelper.TapByPercent(deviceID, 29.3, 37.9);
-                        Thread.Sleep(500);
-                        KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.7, 42.3);
+                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 45.6, 82.1);
+                            Thread.Sleep(500);
+                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.7, 42.3);
+                            Thread.Sleep(5000);
+                        }
+                        else
+                        {
+                            Thread.Sleep(2000);
+                        }
                     }
-                    else
-                    {
-                        Thread.Sleep(2000);
-                    }
-                }
-            }).Start();
+                });
+                DFThread.Name = "DF_Thread";
+                DFThread.Start();
+            }
+            else
+            {
+                this.Status_TextBlock.Text = "Not Running";
+                DFThread.Abort();
+            }
 
 
         }

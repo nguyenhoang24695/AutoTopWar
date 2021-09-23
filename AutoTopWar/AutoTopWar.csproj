@@ -65,8 +65,9 @@
     <Reference Include="Emgu.CV.World">
       <HintPath>..\..\ADB Capture\Emgu.CV.World.dll</HintPath>
     </Reference>
-    <Reference Include="KAutoHelper">
-      <HintPath>.\KAutoHelper.dll</HintPath>
+    <Reference Include="KAutoHelper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\CucMuoiNho\source\repos\ClassLibrary1\ClassLibrary1\bin\Release\KAutoHelper.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>

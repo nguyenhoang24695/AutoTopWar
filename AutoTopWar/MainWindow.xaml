@@ -77,6 +77,8 @@
                                     </GroupBox.Header>
                                     <StackPanel>
                                         <Button x:Name="Run_Dark_Force" Click="Run_Dark_Force_Click">Run</Button>
+                                        <TextBlock>Status</TextBlock>
+                                        <TextBlock x:Name="Status_TextBlock">False</TextBlock>
                                     </StackPanel>
                                 </GroupBox>
 
