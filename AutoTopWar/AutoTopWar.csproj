@@ -65,9 +65,9 @@
     <Reference Include="Emgu.CV.World">
       <HintPath>..\..\ADB Capture\Emgu.CV.World.dll</HintPath>
     </Reference>
-    <Reference Include="KAutoHelper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="KAutoHelper, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\CucMuoiNho\source\repos\ClassLibrary1\ClassLibrary1\bin\Release\KAutoHelper.dll</HintPath>
+      <HintPath>..\..\..\KAutoHelper\KAutoHelper\bin\Release\KAutoHelper.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
@@ -300,6 +300,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="pic\search\rally\bumbum\inBumBum.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="pic\world_queue\queue0-3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="vcruntime140.dll">

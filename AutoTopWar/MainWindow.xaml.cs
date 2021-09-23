@@ -403,6 +403,11 @@ namespace AutoTopWar
                 {
                     while (true)
                     {
+                        Dispatcher.Invoke(() =>
+                            {
+                                this.Status_Queue_TextBlock.Text = "";
+
+                            });
                         if (AndroidAction.ExistImageInstant(deviceID, "pic/world_queue"))
                         {
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 12.7, 91.6);
@@ -436,6 +441,11 @@ namespace AutoTopWar
                         }
                         else
                         {
+                            Dispatcher.Invoke(() =>
+                            {
+
+                                this.Status_Queue_TextBlock.Text = "Full";
+                            });
                             Thread.Sleep(2000);
                         }
                     }

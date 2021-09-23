@@ -79,6 +79,7 @@
                                         <Button x:Name="Run_Dark_Force" Click="Run_Dark_Force_Click">Run</Button>
                                         <TextBlock>Status</TextBlock>
                                         <TextBlock x:Name="Status_TextBlock">False</TextBlock>
+                                        <TextBlock x:Name="Status_Queue_TextBlock"></TextBlock>
                                     </StackPanel>
                                 </GroupBox>
 
