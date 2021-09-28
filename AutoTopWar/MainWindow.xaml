@@ -76,6 +76,8 @@
                                         Specify
                                     </GroupBox.Header>
                                     <StackPanel>
+                                        <RadioButton GroupName="Rally" IsChecked="True" Name="DarkForce_RB">DarkForce</RadioButton>
+                                        <RadioButton GroupName="Rally" Name="Hammer_RB">Hammer Battle</RadioButton>
                                         <Button x:Name="Run_Dark_Force" Click="Run_Dark_Force_Click">Run</Button>
                                         <TextBlock>Status</TextBlock>
                                         <TextBlock x:Name="Status_TextBlock">False</TextBlock>

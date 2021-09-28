@@ -408,6 +408,13 @@ namespace AutoTopWar
                                 this.Status_Queue_TextBlock.Text = "";
 
                             });
+
+                        if (AndroidAction.ExistImageInstant(deviceID, "pic/search/overArmy"))
+                        {
+                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 87.6, 35.2);
+                            continue;
+                        }
+
                         if (AndroidAction.ExistImageInstant(deviceID, "pic/world_queue"))
                         {
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 12.7, 91.6);
@@ -418,7 +425,21 @@ namespace AutoTopWar
                             Thread.Sleep(1000);
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.0, 46.3);
                             Thread.Sleep(1000);
-                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 29.3, 37.9);
+                            Dispatcher.Invoke(() =>
+                            {
+                                if (DarkForce_RB.IsChecked.Value)
+                                {
+                                    KAutoHelper.ADBHelper.TapByPercent(deviceID, 40.9, 39.4);
+
+                                }
+                                else
+                                {
+                                    KAutoHelper.ADBHelper.TapByPercent(deviceID, 70.7, 39.2);
+
+                                }
+
+                            });
+
                             Thread.Sleep(2000);
                             if (!AndroidAction.ExistImageInstant(deviceID, "pic/search/battle"))
                             {
