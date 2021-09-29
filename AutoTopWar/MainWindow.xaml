@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:AutoTopWar"
         xmlns:Entity="clr-namespace:AutoTopWar.Entity" x:Name="Main_Window" x:Class="AutoTopWar.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded" Closing="Main_Window_Closing">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded" Closing="Main_Window_Closing" Deactivated="Main_Window_Deactivated">
     <DockPanel LastChildFill="True">
         <Grid DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>

@@ -420,7 +420,7 @@ namespace AutoTopWar
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 12.7, 91.6);
                             Thread.Sleep(1000);
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.3, 71.6);
-                            Thread.Sleep(1000);
+                            Thread.Sleep(2000);
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.0, 46.3);
                             Thread.Sleep(1000);
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.0, 46.3);
@@ -434,7 +434,8 @@ namespace AutoTopWar
                                 }
                                 else
                                 {
-                                    KAutoHelper.ADBHelper.TapByPercent(deviceID, 70.7, 39.2);
+                                    //KAutoHelper.ADBHelper.TapByPercent(deviceID, 70.7, 39.2);
+                                    AndroidAction.ClickImageInstant(deviceID, "pic/search/new_rally");
 
                                 }
 
@@ -458,7 +459,7 @@ namespace AutoTopWar
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 45.6, 82.1);
                             Thread.Sleep(500);
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.7, 42.3);
-                            Thread.Sleep(5000);
+                            Thread.Sleep(1000);
                         }
                         else
                         {
@@ -481,6 +482,12 @@ namespace AutoTopWar
             }
 
 
+        }
+
+        private void Main_Window_Deactivated(object sender, EventArgs e)
+        {
+            Window window = (Window)sender;
+            window.Topmost = true;
         }
     }
 }
