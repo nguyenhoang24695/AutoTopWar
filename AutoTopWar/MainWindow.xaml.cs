@@ -431,7 +431,8 @@ namespace AutoTopWar
                             {
                                 if (DarkForce_RB.IsChecked.Value)
                                 {
-                                    KAutoHelper.ADBHelper.TapByPercent(deviceID, 40.9, 39.4);
+                                    //KAutoHelper.ADBHelper.TapByPercent(deviceID, 40.9, 39.4);
+                                    AndroidAction.ClickImageInstant(deviceID, "pic/search/new_rally/df");
 
                                 }
                                 else
@@ -452,13 +453,14 @@ namespace AutoTopWar
                                 Thread.Sleep(1000);
                                 KAutoHelper.ADBHelper.TapByPercent(deviceID, 91.0, 33.3);
                                 Thread.Sleep(1000);
-                                KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.0, 46.3);
-                                Thread.Sleep(1000);
+                                //KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.0, 46.3);
+                                //Thread.Sleep(1000);
                                 Dispatcher.Invoke(() =>
                                 {
                                     if (DarkForce_RB.IsChecked.Value)
                                     {
-                                        KAutoHelper.ADBHelper.TapByPercent(deviceID, 40.9, 39.4);
+                                        //KAutoHelper.ADBHelper.TapByPercent(deviceID, 40.9, 39.4);
+                                        AndroidAction.ClickImageInstant(deviceID, "pic/search/new_rally/df");
 
                                     }
                                     else
