@@ -437,7 +437,7 @@ namespace AutoTopWar
                                 else
                                 {
                                     //KAutoHelper.ADBHelper.TapByPercent(deviceID, 70.7, 39.2);
-                                    AndroidAction.ClickImageInstant(deviceID, "pic/search/new_rally");
+                                    AndroidAction.ClickImageInstant(deviceID, "pic/search/new_rally/hammer");
 
                                 }
 
@@ -464,7 +464,7 @@ namespace AutoTopWar
                                     else
                                     {
                                         //KAutoHelper.ADBHelper.TapByPercent(deviceID, 70.7, 39.2);
-                                        AndroidAction.ClickImageInstant(deviceID, "pic/search/new_rally");
+                                        AndroidAction.ClickImageInstant(deviceID, "pic/search/new_rally/hammer");
 
                                     }
 
