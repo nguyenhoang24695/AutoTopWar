@@ -412,6 +412,8 @@ namespace AutoTopWar
                         if (AndroidAction.ExistImageInstant(deviceID, "pic/search/overArmy"))
                         {
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 87.6, 35.2);
+                            Thread.Sleep(1000);
+                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.0, 46.3);
                             continue;
                         }
 
@@ -452,7 +454,22 @@ namespace AutoTopWar
                                 Thread.Sleep(1000);
                                 KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.0, 46.3);
                                 Thread.Sleep(1000);
-                                KAutoHelper.ADBHelper.TapByPercent(deviceID, 29.3, 37.9);
+                                Dispatcher.Invoke(() =>
+                                {
+                                    if (DarkForce_RB.IsChecked.Value)
+                                    {
+                                        KAutoHelper.ADBHelper.TapByPercent(deviceID, 40.9, 39.4);
+
+                                    }
+                                    else
+                                    {
+                                        //KAutoHelper.ADBHelper.TapByPercent(deviceID, 70.7, 39.2);
+                                        AndroidAction.ClickImageInstant(deviceID, "pic/search/new_rally");
+
+                                    }
+
+                                });
+                                //KAutoHelper.ADBHelper.TapByPercent(deviceID, 29.3, 37.9);
                                 Thread.Sleep(2000);
                             }
 
@@ -486,8 +503,8 @@ namespace AutoTopWar
 
         private void Main_Window_Deactivated(object sender, EventArgs e)
         {
-            Window window = (Window)sender;
-            window.Topmost = true;
+            //Window window = (Window)sender;
+            //window.Topmost = true;
         }
     }
 }
