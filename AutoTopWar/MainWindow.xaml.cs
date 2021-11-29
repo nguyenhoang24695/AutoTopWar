@@ -422,9 +422,7 @@ namespace AutoTopWar
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 12.7, 91.6);
                             Thread.Sleep(1000);
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.3, 71.6);
-                            Thread.Sleep(2000);
-                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.0, 46.3);
-                            Thread.Sleep(1000);
+                            Thread.Sleep(4000);
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.0, 46.3);
                             Thread.Sleep(1000);
                             Dispatcher.Invoke(() =>
