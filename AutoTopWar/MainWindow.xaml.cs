@@ -416,6 +416,11 @@ namespace AutoTopWar
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.0, 46.3);
                             continue;
                         }
+                        if (AndroidAction.ExistImageInstant(deviceID, "pic/search/overArmy2"))
+                        {
+                            AndroidAction.ClickImageInstant(deviceID, "pic/search/overArmy2");
+                            continue;
+                        }
 
                         if (AndroidAction.ExistImageInstant(deviceID, "pic/world_queue"))
                         {
@@ -445,7 +450,7 @@ namespace AutoTopWar
                             Thread.Sleep(2000);
                             if (!AndroidAction.ExistImageInstant(deviceID, "pic/search/battle"))
                             {
-                                KAutoHelper.ADBHelper.TapByPercent(deviceID, 75.7, 52.9);
+                                KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.3, 53.3);
                                 Thread.Sleep(1000);
                                 KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.7, 66.7);
                                 Thread.Sleep(1000);
@@ -475,7 +480,7 @@ namespace AutoTopWar
                                 Thread.Sleep(2000);
                             }
 
-                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 45.6, 82.1);
+                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 45.3, 85.8);
                             Thread.Sleep(500);
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.7, 42.3);
                             Thread.Sleep(1000);
