@@ -69,7 +69,7 @@ namespace AutoTopWar.Action
         public static bool ExistImageInstant(string deviceID, string path)
         {
             Log.Info(String.Format("Check Exist Image Instant: IP:{0}, path: {1}", deviceID, path));
-            var tap = ADBHelper.FindImage(deviceID, path, 2000, 2);
+            var tap = ADBHelper.FindImage(deviceID, path, 1500, 2);
             if (tap != null)
             {
                 return true;

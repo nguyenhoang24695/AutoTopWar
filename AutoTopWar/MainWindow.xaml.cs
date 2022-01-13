@@ -405,7 +405,7 @@ namespace AutoTopWar
                     {
                         Dispatcher.Invoke(() =>
                             {
-                                this.Status_Queue_TextBlock.Text = "";
+                                this.Status_Queue_TextBlock.Text = "Tiền xử lý 1";
 
                             });
 
@@ -416,22 +416,41 @@ namespace AutoTopWar
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.0, 46.3);
                             continue;
                         }
-                        if (AndroidAction.ExistImageInstant(deviceID, "pic/search/overArmy2"))
+                        Dispatcher.Invoke(() =>
+                            {
+                                this.Status_Queue_TextBlock.Text = "Tiền xử lý 2";
+
+                            });
+                        var isTap = AndroidAction.ClickImageInstant(deviceID, "pic/search/overArmy2");
+                        if (isTap)
                         {
-                            AndroidAction.ClickImageInstant(deviceID, "pic/search/overArmy2");
                             continue;
                         }
 
+                        Dispatcher.Invoke(() =>
+                        {
+                            this.Status_Queue_TextBlock.Text = "Kiểm tra hàng chờ";
+
+                        });
                         if (AndroidAction.ExistImageInstant(deviceID, "pic/world_queue"))
                         {
-                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 12.7, 91.6);
-                            Thread.Sleep(1000);
-                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.3, 71.6);
-                            Thread.Sleep(4000);
-                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.0, 46.3);
-                            Thread.Sleep(1000);
                             Dispatcher.Invoke(() =>
                             {
+                                this.Status_Queue_TextBlock.Text = "tìm rally";
+
+                            });
+                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 12.7, 91.6);
+                            Thread.Sleep(2000);
+                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.3, 71.6);
+                            Thread.Sleep(10000);
+                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.0, 46.3);
+                            Thread.Sleep(2000);
+                            Dispatcher.Invoke(() =>
+                            {
+
+                                this.Status_Queue_TextBlock.Text = "Chọn loại Rally";
+
+
                                 if (DarkForce_RB.IsChecked.Value)
                                 {
                                     //KAutoHelper.ADBHelper.TapByPercent(deviceID, 40.9, 39.4);
@@ -448,8 +467,18 @@ namespace AutoTopWar
                             });
 
                             Thread.Sleep(2000);
+                            Dispatcher.Invoke(() =>
+                            {
+                                this.Status_Queue_TextBlock.Text = "Kiểm tra màn hình xuất trận";
+
+                            });
                             if (!AndroidAction.ExistImageInstant(deviceID, "pic/search/battle"))
                             {
+                                Dispatcher.Invoke(() =>
+                                {
+                                    this.Status_Queue_TextBlock.Text = "Hết thể lực";
+
+                                });
                                 KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.3, 53.3);
                                 Thread.Sleep(1000);
                                 KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.7, 66.7);
@@ -460,6 +489,7 @@ namespace AutoTopWar
                                 //Thread.Sleep(1000);
                                 Dispatcher.Invoke(() =>
                                 {
+                                    this.Status_Queue_TextBlock.Text = "Chọn loại Rally";
                                     if (DarkForce_RB.IsChecked.Value)
                                     {
                                         KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.0, 46.3);
@@ -480,7 +510,13 @@ namespace AutoTopWar
                                 Thread.Sleep(2000);
                             }
 
-                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 45.3, 85.8);
+                            Dispatcher.Invoke(() =>
+                            {
+                                this.Status_Queue_TextBlock.Text = "Xuất trận";
+
+                            });
+                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 45.6, 82.1);
+                            //KAutoHelper.ADBHelper.TapByPercent(deviceID, 45.3, 85.8);
                             Thread.Sleep(500);
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.7, 42.3);
                             Thread.Sleep(1000);
