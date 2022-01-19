@@ -66,10 +66,10 @@ namespace AutoTopWar.Action
             }
             return false;
         }
-        public static bool ExistImageInstant(string deviceID, string path)
+        public static bool ExistImageInstant(string deviceID, string path, int count = 0)
         {
             Log.Info(String.Format("Check Exist Image Instant: IP:{0}, path: {1}", deviceID, path));
-            var tap = ADBHelper.FindImage(deviceID, path, 1500, 2);
+            var tap = ADBHelper.FindImage(deviceID, path, 1500, count == 0 ? 2 : count);
             if (tap != null)
             {
                 return true;
@@ -77,10 +77,10 @@ namespace AutoTopWar.Action
             return false;
         }
 
-        public static bool ClickImageInstant(string deviceID, string path)
+        public static bool ClickImageInstant(string deviceID, string path, int count = 0)
         {
             Log.Info(String.Format("Check Exist Image Instant: IP:{0}, path: {1}", deviceID, path));
-            var tap = ADBHelper.FindImageAndClick(deviceID, path, 2000, 2);
+            var tap = ADBHelper.FindImageAndClick(deviceID, path, 2000, count == 0 ? 2 : count);
             if (tap)
             {
                 return true;
