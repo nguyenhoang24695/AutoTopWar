@@ -435,7 +435,8 @@ namespace AutoTopWar
 
                         if (AndroidAction.ExistImageInstant(deviceID, "pic/search/overArmy3", 1))
                         {
-                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 6.3, 6.0);
+                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 5.3, 2.1);
+                            //KAutoHelper.ADBHelper.TapByPercent(deviceID, 6.3, 6.0);
                             continue;
                         }
 
@@ -444,7 +445,7 @@ namespace AutoTopWar
                             this.Status_Queue_TextBlock.Text = "Kiểm tra hàng chờ";
 
                         });
-                        if (AndroidAction.ExistImageInstant(deviceID, "pic/world_queue"))
+                        if (AndroidAction.ExistImageInstant(deviceID, "pic/world_queue", 1))
                         {
                             Dispatcher.Invoke(() =>
                             {
@@ -491,8 +492,16 @@ namespace AutoTopWar
                                     this.Status_Queue_TextBlock.Text = "Hết thể lực";
 
                                 });
-                                KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.3, 53.3);
-                                Thread.Sleep(1000);
+                                //KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.3, 53.3);
+                                //Thread.Sleep(1000);
+                                KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.7, 66.7);
+                                Thread.Sleep(400);
+                                KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.7, 66.7);
+                                Thread.Sleep(400);
+                                KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.7, 66.7);
+                                Thread.Sleep(400);
+                                KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.7, 66.7);
+                                Thread.Sleep(400);
                                 KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.7, 66.7);
                                 Thread.Sleep(1000);
                                 KAutoHelper.ADBHelper.TapByPercent(deviceID, 91.0, 33.3);
@@ -527,8 +536,8 @@ namespace AutoTopWar
                                 this.Status_Queue_TextBlock.Text = "Xuất trận";
 
                             });
-                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 45.6, 82.1);
-                            //KAutoHelper.ADBHelper.TapByPercent(deviceID, 45.3, 85.8);
+                            //KAutoHelper.ADBHelper.TapByPercent(deviceID, 45.6, 82.1);
+                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 45.3, 85.8);
                             Thread.Sleep(500);
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.7, 42.3);
                             Thread.Sleep(1000);
