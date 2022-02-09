@@ -405,38 +405,74 @@ namespace AutoTopWar
                     {
                         Dispatcher.Invoke(() =>
                             {
-                                this.Status_Queue_TextBlock.Text = "Tiền xử lý 1";
+                                this.Status_Queue_TextBlock.Text = "Tiền xử lý";
 
                             });
 
-                        if (AndroidAction.ExistImageInstant(deviceID, "pic/search/overArmy", 1))
+                        int count = 0;
+                        int p = 0;
+                        var t_1 = new Thread(() =>
+                        {
+                            if (AndroidAction.ExistImageInstant(deviceID, "pic/search/overArmy", 1))
+                            {
+                                p = 1;
+                            }
+                            else
+                            {
+                                count++;
+                            }
+                        });
+                        var t_2 = new Thread(() =>
+                        {
+                            if (AndroidAction.ClickImageInstant(deviceID, "pic/search/overArmy2", 1))
+                            {
+                                p = 2;
+                            }
+                            else
+                            {
+                                count++;
+                            }
+                        });
+                        var t_3 = new Thread(() =>
+                        {
+                            if (AndroidAction.ExistImageInstant(deviceID, "pic/search/overArmy3", 1))
+                            {
+                                p = 3;
+                            }
+                            else
+                            {
+                                count++;
+                            }
+                        });
+                        t_1.Start();
+                        t_2.Start();
+                        t_3.Start();
+                        while (count < 3 && p == 0)
+                        {
+                            Thread.Sleep(200);
+                            continue;
+                        }
+                        if (p != 0)
+                        {
+                            t_1.Abort();
+                            t_2.Abort();
+                            t_3.Abort();
+                        }
+                        if (p == 1)
                         {
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 87.6, 35.2);
                             Thread.Sleep(1000);
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.0, 46.3);
                             continue;
                         }
-                        Dispatcher.Invoke(() =>
-                            {
-                                this.Status_Queue_TextBlock.Text = "Tiền xử lý 2";
-
-                            });
-                        var isTap = AndroidAction.ClickImageInstant(deviceID, "pic/search/overArmy2", 1);
-                        if (isTap)
+                        if (p == 2)
                         {
                             continue;
                         }
-
-                        Dispatcher.Invoke(() =>
-                            {
-                                this.Status_Queue_TextBlock.Text = "Tiền xử lý 3";
-
-                            });
-
-                        if (AndroidAction.ExistImageInstant(deviceID, "pic/search/overArmy3", 1))
+                        if (p == 3)
                         {
-                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 5.3, 2.1);
-                            //KAutoHelper.ADBHelper.TapByPercent(deviceID, 6.3, 6.0);
+                            //KAutoHelper.ADBHelper.TapByPercent(deviceID, 5.3, 2.1);
+                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 6.3, 6.0);
                             continue;
                         }
 
@@ -536,8 +572,8 @@ namespace AutoTopWar
                                 this.Status_Queue_TextBlock.Text = "Xuất trận";
 
                             });
-                            //KAutoHelper.ADBHelper.TapByPercent(deviceID, 45.6, 82.1);
-                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 45.3, 85.8);
+                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 45.6, 82.1);
+                            //KAutoHelper.ADBHelper.TapByPercent(deviceID, 45.3, 85.8);
                             Thread.Sleep(500);
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.7, 42.3);
                             Thread.Sleep(1000);
