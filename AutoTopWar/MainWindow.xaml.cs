@@ -562,25 +562,35 @@ namespace AutoTopWar
                             });
                             if (!AndroidAction.ExistImageInstant(deviceID, "pic/search/battle"))
                             {
+                                bool is50 = false;
                                 Dispatcher.Invoke(() =>
                                 {
                                     this.Status_Queue_TextBlock.Text = "Hết thể lực";
-
+                                    is50 = Energy_50.IsChecked.Value;
                                 });
-                                //KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.3, 53.3);
-                                //Thread.Sleep(1000);
-                                KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.7, 66.7);
-                                Thread.Sleep(400);
-                                KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.7, 66.7);
-                                Thread.Sleep(400);
-                                KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.7, 66.7);
-                                Thread.Sleep(400);
-                                KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.7, 66.7);
-                                Thread.Sleep(400);
-                                KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.7, 66.7);
-                                Thread.Sleep(1000);
+
+                                if (is50)
+                                {
+                                    KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.3, 53.3);
+                                    Thread.Sleep(1000);
+                                }
+                                else
+                                {
+
+                                    KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.7, 66.7);
+                                    Thread.Sleep(400);
+                                    KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.7, 66.7);
+                                    Thread.Sleep(400);
+                                    KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.7, 66.7);
+                                    Thread.Sleep(400);
+                                    KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.7, 66.7);
+                                    Thread.Sleep(400);
+                                    KAutoHelper.ADBHelper.TapByPercent(deviceID, 49.7, 66.7);
+                                    Thread.Sleep(1000);
+                                }
                                 KAutoHelper.ADBHelper.TapByPercent(deviceID, 91.0, 33.3);
                                 Thread.Sleep(1000);
+
 
                                 //Thread.Sleep(1000);
                                 Dispatcher.Invoke(() =>
