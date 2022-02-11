@@ -447,22 +447,24 @@ namespace AutoTopWar
                         var t_4 = new Thread(() =>
                         {
                             bool isIssue = false;
+                            bool DFchecked = false;
                             Dispatcher.Invoke(() =>
                             {
-
-                                if (DarkForce_RB.IsChecked.Value)
-                                {
-                                    //KAutoHelper.ADBHelper.TapByPercent(deviceID, 40.9, 39.4);
-                                    isIssue = AndroidAction.ClickImageInstant(deviceID, "pic/search/new_rally/df");
-
-                                }
-                                else
-                                {
-                                    //KAutoHelper.ADBHelper.TapByPercent(deviceID, 70.7, 39.2);
-                                    isIssue = AndroidAction.ClickImageInstant(deviceID, "pic/search/new_rally/hammer");
-
-                                }
+                                DFchecked = DarkForce_RB.IsChecked.Value;
                             });
+                            if (DFchecked)
+                            {
+                                //KAutoHelper.ADBHelper.TapByPercent(deviceID, 40.9, 39.4);
+                                isIssue = AndroidAction.ClickImageInstant(deviceID, "pic/search/new_rally/df", 1);
+
+                            }
+                            else
+                            {
+                                //KAutoHelper.ADBHelper.TapByPercent(deviceID, 70.7, 39.2);
+                                isIssue = AndroidAction.ClickImageInstant(deviceID, "pic/search/new_rally/hammer", 1);
+
+                            }
+
                             if (isIssue)
                             {
                                 p = 4;
