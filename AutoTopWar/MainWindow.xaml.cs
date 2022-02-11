@@ -444,10 +444,36 @@ namespace AutoTopWar
                                 count++;
                             }
                         });
+                        var t_4 = new Thread(() =>
+                        {
+                            bool isIssue = false;
+                            if (DarkForce_RB.IsChecked.Value)
+                            {
+                                //KAutoHelper.ADBHelper.TapByPercent(deviceID, 40.9, 39.4);
+                                isIssue = AndroidAction.ClickImageInstant(deviceID, "pic/search/new_rally/df");
+
+                            }
+                            else
+                            {
+                                //KAutoHelper.ADBHelper.TapByPercent(deviceID, 70.7, 39.2);
+                                isIssue = AndroidAction.ClickImageInstant(deviceID, "pic/search/new_rally/hammer");
+
+                            }
+
+                            if (isIssue)
+                            {
+                                p = 2;
+                            }
+                            else
+                            {
+                                count++;
+                            }
+                        });
                         t_1.Start();
                         t_2.Start();
                         t_3.Start();
-                        while (count < 3 && p == 0)
+                        t_4.Start();
+                        while (count < 4 && p == 0)
                         {
                             Thread.Sleep(200);
                             continue;
@@ -457,6 +483,7 @@ namespace AutoTopWar
                             t_1.Abort();
                             t_2.Abort();
                             t_3.Abort();
+                            t_4.Abort();
                         }
                         if (p == 1)
                         {
@@ -471,18 +498,28 @@ namespace AutoTopWar
                         }
                         if (p == 3)
                         {
-                            //KAutoHelper.ADBHelper.TapByPercent(deviceID, 5.3, 2.1);
-                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 6.3, 6.0);
+                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 5.3, 2.1);
+                            //KAutoHelper.ADBHelper.TapByPercent(deviceID, 6.3, 6.0);
                             continue;
                         }
+
 
                         Dispatcher.Invoke(() =>
                         {
                             this.Status_Queue_TextBlock.Text = "Kiểm tra hàng chờ";
 
                         });
-                        if (AndroidAction.ExistImageInstant(deviceID, "pic/world_queue", 1))
+                        if (p == 4 || AndroidAction.ExistImageInstant(deviceID, "pic/world_queue", 1))
                         {
+                            if (p == 4)
+                            {
+                                Dispatcher.Invoke(() =>
+                                {
+                                    this.Status_Queue_TextBlock.Text = "Phát hiện đang chờ rally";
+
+                                });
+                                goto DoRally;
+                            }
                             Dispatcher.Invoke(() =>
                             {
                                 this.Status_Queue_TextBlock.Text = "tìm rally";
@@ -516,6 +553,8 @@ namespace AutoTopWar
                             });
 
                             Thread.Sleep(2000);
+
+                        DoRally:
                             Dispatcher.Invoke(() =>
                             {
                                 this.Status_Queue_TextBlock.Text = "Kiểm tra màn hình xuất trận";
@@ -572,8 +611,8 @@ namespace AutoTopWar
                                 this.Status_Queue_TextBlock.Text = "Xuất trận";
 
                             });
-                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 45.6, 82.1);
-                            //KAutoHelper.ADBHelper.TapByPercent(deviceID, 45.3, 85.8);
+                            //KAutoHelper.ADBHelper.TapByPercent(deviceID, 45.6, 82.1);
+                            KAutoHelper.ADBHelper.TapByPercent(deviceID, 45.3, 85.8);
                             Thread.Sleep(500);
                             KAutoHelper.ADBHelper.TapByPercent(deviceID, 50.7, 42.3);
                             Thread.Sleep(1000);
